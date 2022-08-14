@@ -1,8 +1,8 @@
 import re
 import subprocess
 
-from core.models.music import MusicInformationResponse, MusicMetadata
 from fastapi import HTTPException
+from models.music import MusicInformationResponse, MusicMetadata
 
 
 def get_all_players():

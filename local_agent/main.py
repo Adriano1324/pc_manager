@@ -2,7 +2,7 @@ from multiprocessing import Process
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import music_manager, light_manager
+from routers import light_manager, music_manager
 from targets.executor import CommandExecutor
 from targets.local_agent import LocalAgent
 
