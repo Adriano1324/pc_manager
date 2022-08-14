@@ -1,4 +1,6 @@
 import json
+import time
+from http.client import HTTPException
 
 import requests
 from core.modules.process import Process
@@ -25,5 +27,6 @@ class LocalAgent(Process):
             )
             while configuration["active"]:
                 configuration = self.get_configuration()
-        except:
-            pass
+                time.sleep(30)
+        except Exception as e:
+            raise HTTPException(500, e)

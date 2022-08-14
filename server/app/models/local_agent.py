@@ -1,5 +1,3 @@
-from webbrowser import get
-
 from pydantic import BaseModel
 
 

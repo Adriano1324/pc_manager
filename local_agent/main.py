@@ -1,10 +1,8 @@
-import json
 from multiprocessing import Process
 
-import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import music_manager
+from routers import light_manager, music_manager
 from targets.executor import CommandExecutor
 from targets.local_agent import LocalAgent
 
@@ -94,4 +92,10 @@ app.include_router(
     music_manager.router,
     prefix="/music",
     tags=["music"],
+)
+
+app.include_router(
+    light_manager.router,
+    prefix="/light",
+    tags=["light"],
 )
