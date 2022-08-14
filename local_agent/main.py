@@ -1,7 +1,5 @@
-import json
 from multiprocessing import Process
 
-import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import music_manager
