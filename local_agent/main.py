@@ -1,12 +1,13 @@
-from multiprocessing import Process
 import json
+from multiprocessing import Process
+
+import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import music_manager
 from targets.executor import CommandExecutor
 from targets.local_agent import LocalAgent
 
-import requests
 app = FastAPI(title="Kafka Publisher API")
 
 origins = [
@@ -26,7 +27,10 @@ app.add_middleware(
 )
 
 processes = []
-targets = {"command_executor": CommandExecutor(name="command_executor"), "local_agent": LocalAgent(name="local_agent")}
+targets = {
+    "command_executor": CommandExecutor(name="command_executor"),
+    "local_agent": LocalAgent(name="local_agent"),
+}
 
 
 @app.on_event("startup")
