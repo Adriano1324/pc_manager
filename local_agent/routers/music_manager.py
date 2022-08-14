@@ -1,6 +1,4 @@
 import subprocess
-import time
-from typing import Optional
 
 from fastapi import APIRouter
 from utils.format import get_metadata_for_player
@@ -22,7 +20,7 @@ def get_metadata(players: str = None):
 
 
 @router.get("/position")
-def get_metadata(player: str = None):
+def get_position(player: str = None):
     return float(subprocess.getoutput(f"playerctl -p {player} position"))
 
 
@@ -58,17 +56,17 @@ def stop_song(player: str = None):
 
 @router.post("/position")
 def ser_song_position(operation: str, player: str = None):
-    return base_playerctl_operation(f"position", player, operation)
+    return base_playerctl_operation("position", player, operation)
 
 
 @router.post("/volume")
 def set_song_volume(operation: str, player: str = None):
-    return base_playerctl_operation(f"volume", player, operation)
+    return base_playerctl_operation("volume", player, operation)
 
 
 @router.post("/open")
 def open_song(uri: str, player: str = None):
-    return base_playerctl_operation(f"open", player, uri)
+    return base_playerctl_operation("open", player, uri)
 
 
 @router.post("/loop")
@@ -76,7 +74,7 @@ def loop_song(status: str, player: str = None):
     """
     Can be "None", "Track", or "Playlist".
     """
-    return base_playerctl_operation(f"loop", player, status)
+    return base_playerctl_operation("loop", player, status)
 
 
 @router.post("/shuffle")
@@ -84,4 +82,4 @@ def set_shuffle(status: str, player: str = None):
     """
     Can be "On", "Off", or "Toggle".
     """
-    return base_playerctl_operation(f"shuffle", status, player)
+    return base_playerctl_operation("shuffle", status, player)

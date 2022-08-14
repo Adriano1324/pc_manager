@@ -3,11 +3,9 @@ import time
 from app.core.gateways.kafka import Kafka
 from app.dependencies.kafka import get_kafka_instance
 from app.enum import EnvironmentVariables
-from app.routers import publisher
+from app.routers import publisher, token, user
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Request
-
-from .db import get_db_client
 
 load_dotenv()
 
@@ -50,4 +48,16 @@ app.include_router(
     prefix="/producer",
     tags=["producer"],
     dependencies=[Depends(get_kafka_instance)],
+)
+
+app.include_router(
+    user.router,
+    prefix="/user",
+    tags=["user"],
+)
+
+app.include_router(
+    token.router,
+    prefix="/token",
+    tags=["token"],
 )
