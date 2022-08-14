@@ -24,13 +24,13 @@ export const Player: React.FC<{}> = () => {
           <S.Title>{trackInfo.title}</S.Title>
           <S.Author>{trackInfo.artist}</S.Author>
         </S.BasicInfo>
-        <SkipPreviousIcon onClick={() => previousSong("spotify")} />
+        <SkipPreviousIcon onClick={() => previousSong(player ?? "")} />
         {isPlaying ? (
           <PauseIcon onClick={() => toggle(!isPlaying)} />
         ) : (
           <PlayArrowIcon onClick={() => toggle(!isPlaying)} />
         )}
-        <SkipNextIcon onClick={() => next("spotify")} />
+        <SkipNextIcon onClick={() => next(player ?? "")} />
         <ProgressBar
           position={trackInfo.position}
           duration={trackInfo.duration}
