@@ -24,7 +24,7 @@ def get_metadata_for_player(players=None):
             volume=subprocess.getoutput(f"playerctl -p {player} volume"),
             player=player,
             loop=subprocess.getoutput(f"playerctl -p {player} loop"),
-            shuffle=subprocess.getoutput(f"playerctl -p {player} shuffle")
+            shuffle=subprocess.getoutput(f"playerctl -p {player} shuffle"),
         )
         for player in players
     ]
@@ -52,7 +52,6 @@ def format_music_metadata(data: str):
             row = row.replace(addon, "", 1)
         for attribute in attributes:
             if attribute in row:
-                response[attribute] = " ".join(re.sub(' +', ' ',row).split(" ")[2::])
+                response[attribute] = " ".join(re.sub(" +", " ", row).split(" ")[2::])
 
-                
     return MusicMetadata(**response)

@@ -2,7 +2,6 @@ from multiprocessing import Process
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from routers import music_manager
 from targets.executor import CommandExecutor
 
@@ -13,7 +12,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
 ]
 
 app.add_middleware(

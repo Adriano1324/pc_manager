@@ -7,6 +7,8 @@ from app.routers import publisher
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Request
 
+from .db import get_db_client
+
 load_dotenv()
 
 
@@ -20,6 +22,7 @@ kafka_server = Kafka(
 
 @app.on_event("startup")
 async def startup_event():
+    time.sleep(10)
     await kafka_server.aioproducer.start()
 
 

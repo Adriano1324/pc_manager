@@ -16,9 +16,9 @@ class MusicMetadata(BaseModel):
     trackNumber: Optional[float]
     url: Optional[str]
 
-    @validator('length')
+    @validator("length")
     def change_to_seconds(cls, v):
-        return v/1_000_000
+        return v / 1_000_000
 
 
 class MusicInformationResponse(BaseModel):
