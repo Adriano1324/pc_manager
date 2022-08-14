@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic import BaseModel, validator
 
@@ -24,8 +24,8 @@ class MusicMetadata(BaseModel):
 class MusicInformationResponse(BaseModel):
     metadata: Optional[MusicMetadata]
     status: str
-    position: Optional[float]
-    volume: Optional[float]
+    position: Optional[Union[float, str]]
+    volume: Optional[Union[float, str]]
     player: str
     loop: str
     shuffle: str
