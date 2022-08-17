@@ -1,3 +1,4 @@
+import React from "react";
 import { timeSliderChange } from "../../../utils/music";
 import * as S from "./styles";
 

@@ -1,7 +1,8 @@
-import PauseIcon from "@material-ui/icons/Pause";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+import React from "react";
+import PauseIcon from "@mui/icons-material/Pause";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { usePlayerContext } from "../../../hooks";
 
 import { next, previousSong } from "../../../utils/music";
@@ -24,17 +25,17 @@ export const Player: React.FC<{}> = () => {
           <S.Title>{trackInfo.title}</S.Title>
           <S.Author>{trackInfo.artist}</S.Author>
         </S.BasicInfo>
-        <SkipPreviousIcon onClick={() => previousSong(player ?? "")} />
+        <SkipPreviousIcon onClick={() => previousSong(player || "")} />
         {isPlaying ? (
           <PauseIcon onClick={() => toggle(!isPlaying)} />
         ) : (
           <PlayArrowIcon onClick={() => toggle(!isPlaying)} />
         )}
-        <SkipNextIcon onClick={() => next(player ?? "")} />
+        <SkipNextIcon onClick={() => next(player || "")} />
         <ProgressBar
           position={trackInfo.position}
           duration={trackInfo.duration}
-          player={player ?? ""}
+          player={player || ""}
         />
       </S.PlayerContainer>
     </S.PlayerWrapper>

@@ -17,7 +17,7 @@ export const PlayerProvider: React.FC<PlayerProviderProps> = ({ children }) => {
   const [players, setPlayers] = useState<string[]>([]);
 
   const toggle = (isPlaying: boolean) => {
-    tooglePlayer(ctx.player ?? players[0]);
+    tooglePlayer(ctx.player || "");
     setCtx({ ...ctx, isPlaying });
   };
 
