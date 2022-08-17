@@ -20,14 +20,6 @@ Install node dependencies
 
     yarn
 
-If not installed run:
-
-    nvm install
-    nvm use
-
-Install node dependencies
-
-    yarn
 
 ## Commands
 
