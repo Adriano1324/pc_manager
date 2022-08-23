@@ -53,7 +53,7 @@ export const timeSliderChange = async (value: number, player: string) =>
     `${process.env.REACT_APP_LOCAL_CLIENT_URL}/music/position`,
     null,
     {
-      params: { player: player, operation: value },
+      params: { player: player, value: value },
     }
   );
 
