@@ -17,12 +17,11 @@ def get_metadata_for_player(players=None):
     available_players = get_all_players()
     if players is None:
         players = available_players[0]
-    else:
-        if not isinstance(players, list):
-            players = [players]
-        for player in players:
-            if player not in available_players:
-                raise HTTPException(400, f"Player:{player} dosen't exist")
+    if not isinstance(players, list):
+        players = [players]
+    for player in players:
+        if player not in available_players:
+            raise HTTPException(400, f"Player:{player} dosen't exist")
     return [
         MusicInformationResponse(
             metadata=format_music_metadata(

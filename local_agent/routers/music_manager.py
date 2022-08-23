@@ -24,62 +24,10 @@ def get_position(player: str = None):
     return float(subprocess.getoutput(f"playerctl -p {player} position"))
 
 
-@router.post("/next")
-def play_next_song(player: str = None):
-    return base_playerctl_operation("next", player)
-
-
-@router.post("/previous")
-def play_previous_song(player: str = None):
-    return base_playerctl_operation("previous", player)
-
-
-@router.post("/play")
-def play_song(player: str = None):
-    return base_playerctl_operation("play", player)
-
-
-@router.post("/pause")
-def pause_song(player: str = None):
-    return base_playerctl_operation("pause", player)
-
-
-@router.post("/play_pause")
-def play_pause_song(player: str = None):
-    return base_playerctl_operation("play-pause", player)
-
-
-@router.post("/stop")
-def stop_song(player: str = None):
-    return base_playerctl_operation("stop", player)
-
-
-@router.post("/position")
-def ser_song_position(operation: str, player: str = None):
-    return base_playerctl_operation("position", player, operation)
-
-
-@router.post("/volume")
-def set_song_volume(operation: str, player: str = None):
-    return base_playerctl_operation("volume", player, operation)
-
-
-@router.post("/open")
-def open_song(uri: str, player: str = None):
-    return base_playerctl_operation("open", player, uri)
-
-
-@router.post("/loop")
-def loop_song(status: str, player: str = None):
+@router.post("/{operation}")
+def music_change(operation:str, value:str=None, player: str = None):
     """
+    Shuffle can be "On", "Off", or "Toggle".
     Can be "None", "Track", or "Playlist".
     """
-    return base_playerctl_operation("loop", player, status)
-
-
-@router.post("/shuffle")
-def set_shuffle(status: str, player: str = None):
-    """
-    Can be "On", "Off", or "Toggle".
-    """
-    return base_playerctl_operation("shuffle", status, player)
+    return base_playerctl_operation(operation.replace("_", "-"), player, value)
