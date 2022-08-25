@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LanguageProvider } from "./providers/Language";
-import { PlayerProvider } from "./providers";
+import { PlayerProvider, LightProvider } from "./providers";
 
 const root = ReactDOM.createRoot(
   document.getElementById("PC_MANAGER") as HTMLElement
@@ -12,6 +12,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LanguageProvider>
+      <LightProvider> 
+      </LightProvider>
       <PlayerProvider>
         <App />
       </PlayerProvider>
