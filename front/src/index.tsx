@@ -12,8 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LanguageProvider>
-      <LightProvider> 
-      </LightProvider>
+      <LightProvider /> 
       <PlayerProvider>
         <App />
       </PlayerProvider>
