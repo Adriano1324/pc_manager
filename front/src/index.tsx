@@ -12,10 +12,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LanguageProvider>
-      <LightProvider /> 
-      <PlayerProvider>
-        <App />
-      </PlayerProvider>
+      <LightProvider> 
+        <PlayerProvider>
+          <App />
+        </PlayerProvider>
+      </LightProvider>
     </LanguageProvider>
   </React.StrictMode>
 );
