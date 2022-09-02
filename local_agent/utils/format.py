@@ -66,7 +66,7 @@ def format_music_metadata(data: str):
                 attributes.remove(attribute)
                 break
 
-    length = int(response.get("length")) / 1000000
+    length = int(response.get("length", 0)) / 1000000
     return MusicMetadata(
         trackid=response.get("trackid"),
         length=length,
