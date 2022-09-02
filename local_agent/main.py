@@ -1,8 +1,16 @@
 from multiprocessing import Process
+from sys import prefix
 
+import strawberry
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import light_manager, music_manager
+from strawberry.fastapi import GraphQLRouter
+
+from modules import light_module, music_module
+from modules.light_module import Mutation as LightMutation
+from modules.light_module import Query as LightQuery
+from modules.music_module import Mutation as MusicMutation
+from modules.music_module import Query as MusicQuery
 from targets.executor import CommandExecutor
 from targets.local_agent import LocalAgent
 
@@ -24,6 +32,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@strawberry.type
+class Query(MusicQuery, LightQuery):
+    pass
+
+
+@strawberry.type
+class Mutation(MusicMutation, LightMutation):
+    pass
+
+
+schema = strawberry.Schema(query=Query, mutation=Mutation)
+
+graphql_app = GraphQLRouter(schema)
+
+app.include_router(graphql_app, prefix="/graphql")
 processes = []
 targets = {
     "command_executor": CommandExecutor(name="command_executor"),
@@ -86,16 +110,3 @@ def start_process(name):
             process.start()
             processes.append(process)
             return "process started"
-
-
-app.include_router(
-    music_manager.router,
-    prefix="/music",
-    tags=["music"],
-)
-
-app.include_router(
-    light_manager.router,
-    prefix="/light",
-    tags=["light"],
-)

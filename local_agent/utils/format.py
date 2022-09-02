@@ -2,7 +2,9 @@ import re
 import subprocess
 
 from fastapi import HTTPException
-from models.music import MusicInformationResponse, MusicMetadata
+
+from gql_types.music.music_information import (MusicInformationResponse,
+                                               MusicMetadata)
 
 
 def get_all_players():
@@ -61,5 +63,20 @@ def format_music_metadata(data: str):
         for attribute in attributes:
             if attribute in row:
                 response[attribute] = " ".join(re.sub(" +", " ", row).split(" ")[2::])
+                attributes.remove(attribute)
+                break
 
-    return MusicMetadata(**response)
+    length = int(response.get("length")) / 1000000
+    return MusicMetadata(
+        trackid=response.get("trackid"),
+        length=length,
+        artUrl=response.get("artUrl"),
+        album=response.get("album"),
+        albumArtist=response.get("albumArtist"),
+        artists=response.get("artists"),
+        autoRating=response.get("autoRating"),
+        discNumber=response.get("discNumber"),
+        title=response.get("title"),
+        trackNumber=response.get("trackNumber"),
+        url=response.get("url"),
+    )

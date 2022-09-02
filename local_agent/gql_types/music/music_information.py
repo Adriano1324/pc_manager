@@ -1,9 +1,10 @@
-from typing import Optional, Union
+from typing import Optional
 
-from pydantic import BaseModel, validator
+import strawberry
 
 
-class MusicMetadata(BaseModel):
+@strawberry.type
+class MusicMetadata:
     trackid: Optional[str]
     length: Optional[float]
     artUrl: Optional[str]
@@ -11,21 +12,18 @@ class MusicMetadata(BaseModel):
     albumArtist: Optional[str]
     artists: Optional[str]
     autoRating: Optional[str]
-    discNumber: Optional[float]
+    discNumber: Optional[int]
     title: Optional[str]
     trackNumber: Optional[float]
     url: Optional[str]
 
-    @validator("length")
-    def change_to_seconds(cls, v):
-        return v / 1_000_000
 
-
-class MusicInformationResponse(BaseModel):
+@strawberry.type
+class MusicInformationResponse:
     metadata: Optional[MusicMetadata]
     status: str
-    position: Optional[Union[float, str]]
-    volume: Optional[Union[float, str]]
+    position: Optional[str]
+    volume: Optional[str]
     player: str
     loop: str
     shuffle: str
