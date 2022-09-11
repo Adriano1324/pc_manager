@@ -1,5 +1,5 @@
 import React from "react";
-import { timeSliderChange } from "../../../utils/music";
+// import { timeSliderChange } from "../../../utils/music";
 import * as S from "./styles";
 
 export const ProgressBar: React.FC<{
@@ -15,7 +15,8 @@ export const ProgressBar: React.FC<{
         max={duration}
         value={position}
         step={1}
-        onChange={(e) => timeSliderChange(Number(e.target.value), player)}
+        onChange={(e) => console.log("no fn")}
+        // onChange={(e) => timeSliderChange(Number(e.target.value), player)}
       />
     </S.ProgressBarWrapper>
   );

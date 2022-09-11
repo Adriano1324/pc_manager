@@ -16,5 +16,6 @@
     "noEmit": true,
     "jsx": "preserve"
   },
+  "exclude": ["./src/graphql/__generated__/globalTypes.ts"],
   "include": ["src"]
 }

@@ -5,21 +5,25 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LanguageProvider } from "./providers/Language";
 import { PlayerProvider } from "./providers";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./apollo/client";
 
 const root = ReactDOM.createRoot(
   document.getElementById("PC_MANAGER") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <LanguageProvider>
-      <PlayerProvider>
-        <App />
-      </PlayerProvider>
-    </LanguageProvider>
+    <ApolloProvider client={client}>
+      <LanguageProvider>
+        <PlayerProvider>
+          <App />
+        </PlayerProvider>
+      </LanguageProvider>
+    </ApolloProvider>
   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals(console.log);
