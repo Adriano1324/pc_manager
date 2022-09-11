@@ -50,3 +50,13 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+
+### `yarn gql-schema`
+
+Retrieves the GraphQL schema from the server. It is required to generate types from fragments, queries, and mutations. Always run after changes in backend endpoints.
+
+
+### `yarn gql-generate`
+
+Generates types from fragments, queries, and mutations. Always run after adding / modifying gql files.

@@ -5,7 +5,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { usePlayerContext } from "../../../hooks";
 
-import { next, previousSong } from "../../../utils/music";
+// import { next, previousSong } from "../../../utils/music";
 import { ProgressBar } from "./ProgressBar";
 import * as S from "./styles";
 
@@ -25,13 +25,17 @@ export const Player: React.FC<{}> = () => {
           <S.Title>{trackInfo.title}</S.Title>
           <S.Author>{trackInfo.artist}</S.Author>
         </S.BasicInfo>
-        <SkipPreviousIcon onClick={() => previousSong(player || "")} />
+        <SkipPreviousIcon onClick={() => console.log("no fn")} />
+        {/* <SkipPreviousIcon onClick={() => previousSong(player ?? "")} /> */}
         {isPlaying ? (
-          <PauseIcon onClick={() => toggle(!isPlaying)} />
+          <PauseIcon onClick={() =>  console.log("no fn")} />
+          // <PauseIcon onClick={() => toggle(!isPlaying)} />
         ) : (
-          <PlayArrowIcon onClick={() => toggle(!isPlaying)} />
+          <PlayArrowIcon onClick={() => console.log("no fn")} />
+          // <PlayArrowIcon onClick={() => toggle(!isPlaying)} />
         )}
-        <SkipNextIcon onClick={() => next(player || "")} />
+        <SkipNextIcon onClick={() => console.log("no fn")} />
+        {/* <SkipNextIcon onClick={() => next(player ?? "")} /> */}
         <ProgressBar
           position={trackInfo.position}
           duration={trackInfo.duration}
